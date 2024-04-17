@@ -79,7 +79,7 @@ class TestFilterObservation(object):
                                              error_match):
         env = FakeEnvironment(observation_keys=('key1', 'key2'))
 
-        ValueError
+        raise ValueError
 
         with pytest.raises(error_type, match=error_match):
             FilterObservation(env, filter_keys=filter_keys)
