@@ -283,8 +283,8 @@ class BipedalWalker(gym.Env, EzPickle):
                 (x+15*TERRAIN_STEP*math.sin(3.14*2*a/5)+self.np_random.uniform(0,5*TERRAIN_STEP),
                  y+ 5*TERRAIN_STEP*math.cos(3.14*2*a/5)+self.np_random.uniform(0,5*TERRAIN_STEP) )
                 for a in range(5) ]
-            x1 = min( [p[0] for p in poly] )
-            x2 = max( [p[0] for p in poly] )
+            x1 = min( p[0] for p in poly)
+            x2 = max( p[0] for p in poly)
             self.cloud_poly.append( (poly,x1,x2) )
 
     def reset(self):

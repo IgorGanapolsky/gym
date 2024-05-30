@@ -212,8 +212,8 @@ class TextEncoder(object):
 
         # Calculate frame size from the largest frames.
         # Add some padding since we'll get cut off otherwise.
-        height = max([frame.count(b'\n') for frame in self.frames]) + 1
-        width = max([max([len(line) for line in frame.split(b'\n')]) for frame in self.frames]) + 2
+        height = max(frame.count(b'\n') for frame in self.frames) + 1
+        width = max(max([len(line) for line in frame.split(b'\n')]) for frame in self.frames) + 2
 
         data = {
             "version": 1,

@@ -363,7 +363,7 @@ def get_parallel_rotations():
         if canonical[2] == -2:
             canonical[2] = 2
         canonical *= np.pi / 2
-        if all([(canonical != rot).any() for rot in parallel_rotations]):
+        if all((canonical != rot).any() for rot in parallel_rotations):
             parallel_rotations += [canonical]
     assert len(parallel_rotations) == 24
     return parallel_rotations
