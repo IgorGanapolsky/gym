@@ -7,6 +7,7 @@ import distutils.spawn, distutils.version
 import numpy as np
 from io import StringIO
 from gym import error, logger
+from security import safe_command
 
 def touch(path):
     open(path, 'a').close()
@@ -288,9 +289,9 @@ class ImageEncoder(object):
 
         logger.debug('Starting ffmpeg with "%s"', ' '.join(self.cmdline))
         if hasattr(os,'setsid'): #setsid not present on Windows
-            self.proc = subprocess.Popen(self.cmdline, stdin=subprocess.PIPE, preexec_fn=os.setsid)
+            self.proc = safe_command.run(subprocess.Popen, self.cmdline, stdin=subprocess.PIPE, preexec_fn=os.setsid)
         else:
-            self.proc = subprocess.Popen(self.cmdline, stdin=subprocess.PIPE)
+            self.proc = safe_command.run(subprocess.Popen, self.cmdline, stdin=subprocess.PIPE)
 
     def capture_frame(self, frame):
         if not isinstance(frame, (np.ndarray, np.generic)):
